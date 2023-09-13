@@ -5,20 +5,10 @@ from django.urls import reverse
 
 from notes.models import Note
 
-
 User = get_user_model()
 
-"""
-Здесь могла быть ваша реклама!
 
-Страница со списком заметок:
-    X записи отсортированы по pk в порядке возрастания
-Подробная страница заметки:
-    X Проверить видимость формы автором
-"""
-
-
-PRINT: bool = False
+PRINT: bool = True
 
 
 class TestNoteListPage(TestCase):
@@ -61,7 +51,6 @@ class TestNoteListPage(TestCase):
 
     def test_authorized_client_has_form(self):
         """Видит ли авторизованный юзер форму?"""
-        # Авторизуем клиент при помощи ранее созданного пользователя.
         self.client.force_login(self.author)
         response = self.client.get(self.ADD_URL)
         self.assertIn('form', response.context)

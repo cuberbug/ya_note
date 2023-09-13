@@ -1,26 +1,13 @@
 from http import HTTPStatus
-from colorama import Fore
 
+from colorama import Fore
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
 
 from notes.models import Note
 
-
 User = get_user_model()
-
-
-"""
-Анонимный пользователь не может:
-    + отправить заметку.
-Авторизованный пользователь может
-    + отправить заметку.
-Авторизованный пользователь может
-    - редактировать или удалять свои заметки.
-Авторизованный пользователь не может
-    - редактировать или удалять чужие заметки.
-"""
 
 
 PRINT: bool = True
@@ -35,12 +22,6 @@ class TestNoteCreation(TestCase):
     def setUpTestData(cls) -> None:
         """Подготовка данных для тестов."""
         cls.author = User.objects.create(username='Автор')
-        # cls.reader = User.objects.create(username='Юзер')
-        # cls.note = None.objects.create(
-        #     title='Заголовок',
-        #     text=cls.COMMENT_TEXT,
-        #     author=cls.author,
-        # )
         cls.url = reverse('notes:add')
         cls.auth_client = Client()
         cls.auth_client.force_login(cls.author)
@@ -127,7 +108,6 @@ class TestNoteEditDelete(TestCase):
     def test_author_can_delete_comment(self):
         """Тест удаления заметки автором."""
         self.author_client.delete(self.delete_url)
-        # self.assertRedirects(response, self.note_url)
         notes_count = Note.objects.count()
         self.assertEqual(notes_count, 0)
 
