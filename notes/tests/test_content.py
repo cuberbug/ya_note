@@ -47,7 +47,7 @@ class TestNoteListPage(TestCase):
 
         if PRINT and all_pk == sorted_pk:
             status = f'{Fore.GREEN} >> OK{Fore.RESET}'
-            print(f'\nТест сортировки заметок: {status}')
+            print(f'Тест сортировки заметок: {status}')
 
     def test_authorized_client_has_form(self):
         """Видит ли авторизованный юзер форму?"""
@@ -57,4 +57,4 @@ class TestNoteListPage(TestCase):
 
         if PRINT and response.context['form']:
             status = f'{Fore.GREEN} - да, видит.{Fore.RESET}'
-            print(f'\nВидит ли авторизованный юзер форму? {status}')
+            print(f'Видит ли авторизованный юзер форму? {status}')
