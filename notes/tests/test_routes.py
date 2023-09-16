@@ -92,6 +92,7 @@ class TestRouters(TestCase):
             ('notes:add', None),
             ('notes:edit', (self.notes.slug,)),
             ('notes:delete', (self.notes.slug,)),
+            # ('notes:success', None),
         )
         login_url = reverse('users:login')
         for name, args in urls_edit:
